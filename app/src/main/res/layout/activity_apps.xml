@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="14dp"
+    android:paddingTop="10dp">
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/apps_title"
+        android:textColor="@color/text_primary"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <!-- 运维工具条 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToolInfo"
+                style="@style/ToolChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tool_tv_info" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToolInstall"
+                style="@style/ToolChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/tool_install_apk" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToolCache"
+                style="@style/ToolChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/tool_clear_cache" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToolReboot"
+                style="@style/ToolChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/tool_reboot" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- 搜索与刷新 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchBox"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_panel"
+            android:hint="@string/apps_search_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/checkSystemApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/system_apps_toggle"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRefresh"
+            style="@style/KeyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="6dp"
+            android:minWidth="0dp"
+            android:text="@string/refresh_list"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/loading_apps"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="center_horizontal"
+        android:indeterminateTint="@color/mi_orange"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1" />
+
+    <!-- 儿童锁面板 -->
+    <LinearLayout
+        style="@style/Panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kids_mode"
+            android:textColor="@color/mi_orange"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="勾选 = 允许使用。套用后未勾选的第三方应用将被禁用，可随时恢复。"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnApplyKids"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:text="@string/apply_kids" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRestoreAll"
+                style="@style/KeyButton"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text="@string/restore_all" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

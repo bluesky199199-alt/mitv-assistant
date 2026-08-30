@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 渐变英雄区 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hero"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="26dp"
+            android:paddingBottom="22dp">
+
+            <TextView
+                style="@style/HeroTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name" />
+
+            <TextView
+                style="@style/HeroSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/hero_sub" />
+
+            <!-- 设备卡：点击扫描 / 长按手输IP -->
+            <LinearLayout
+                android:id="@+id/deviceCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_panel"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="12dp">
+
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/dot_red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/deviceNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/current_tv_none"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/deviceStateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/device_pill_idle"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnScanInline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_ripple_round"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:text="@string/scan_devices"
+                    android:textColor="@color/mi_orange"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 功能磁贴 2x2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp">
+
+            <LinearLayout
+                android:id="@+id/tileRemote"
+                style="@style/TileButton"
+                android:layout_width="0dp"
+                android:layout_height="116dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/TileIconText"
+                    android:contentDescription="@string/tile_remote_title"
+                    android:src="@drawable/ic_tile_remote" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tile_remote_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <Space android:layout_width="12dp" android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/tileApps"
+                style="@style/TileButton"
+                android:layout_width="0dp"
+                android:layout_height="116dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/TileIconText"
+                    android:contentDescription="@string/tile_apps_title"
+                    android:src="@drawable/ic_tile_apps" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tile_apps_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="12dp">
+
+            <LinearLayout
+                android:id="@+id/tileCast"
+                style="@style/TileButton"
+                android:layout_width="0dp"
+                android:layout_height="116dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/TileIconText"
+                    android:contentDescription="@string/tile_cast_title"
+                    android:src="@drawable/ic_tile_cast" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tile_cast_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <Space android:layout_width="12dp" android:layout_height="1dp" />
+
+            <LinearLayout
+                android:id="@+id/tileTools"
+                style="@style/TileButton"
+                android:layout_width="0dp"
+                android:layout_height="116dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/TileIconText"
+                    android:contentDescription="@string/tile_tools_title"
+                    android:src="@drawable/ic_tile_tools" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tile_tools_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 提示 -->
+        <TextView
+            android:id="@+id/helpText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/need_connection_tip"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <Space android:layout_width="match_parent" android:layout_height="16dp" />
+    </LinearLayout>
+</ScrollView>

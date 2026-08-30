@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="28dp" android:height="28dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <!-- 四宫格 = 应用管理 -->
+    <path android:pathData="M4,4 h7 v7 h-7 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.95" />
+    <path android:pathData="M13,4 h7 v7 h-7 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.55" />
+    <path android:pathData="M4,13 h7 v7 h-7 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.55" />
+    <path android:pathData="M13,13 h7 v7 h-7 Z" android:fillColor="#FFFFFF" android:fillAlpha="0.95" />
+</vector>

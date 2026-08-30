@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MiTvAssistant" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:navigationBarColor">@color/surface_dark</item>
+        <item name="colorPrimary">@color/mi_orange</item>
+        <item name="colorPrimaryDark">@color/mi_orange_dark</item>
+        <item name="colorSecondary">@color/mi_orange</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="chipStyle">@style/AppChip</item>
+    </style>
+
+    <style name="Panel">
+        <item name="android:background">@drawable/bg_panel</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <!-- 主控台功能磁贴 -->
+    <style name="TileButton">
+        <item name="android:background">@drawable/bg_tile_selector</item>
+        <item name="android:foreground">@drawable/bg_ripple_round</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingVertical">18dp</item>
+    </style>
+
+    <style name="TileIconText">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="HeroTitle" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HeroSub" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">#E6FFFFFF</item>
+    </style>
+
+    <style name="SectionLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/mi_orange</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+
+    <style name="KeyButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="backgroundTint">@color/key_normal</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="rippleColor">@color/key_pressed</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:insetTop">2dp</item>
+        <item name="android:insetBottom">2dp</item>
+    </style>
+
+    <style name="RoundKey" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="backgroundTint">#26FFFFFF</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="rippleColor">@color/key_pressed</item>
+        <item name="cornerRadius">48dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="ToolChip" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#3A3F49</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">6dp</item>
+        <item name="android:minHeight">38dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="AppChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="chipBackgroundColor">@color/chip_bg</item>
+    </style>
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">小米电视助手</string>
+
+    <string name="main_title">主控台</string>
+    <string name="scan_devices">扫描局域网设备</string>
+    <string name="manual_ip">手动输入 IP</string>
+    <string name="open_remote">打开遥控器</string>
+    <string name="open_apps">应用管理 / 儿童锁</string>
+    <string name="open_cast">远程看屏</string>
+    <string name="help">使用帮助</string>
+    <string name="current_tv_none">尚未选择电视，请先扫描或手动输入 IP</string>
+    <string name="device_http_ok">直控(6095)可用</string>
+    <string name="device_http_no">直控不可用</string>
+    <string name="device_adb_ok">ADB 已连通</string>
+    <string name="device_adb_no">ADB 未授权/未开启</string>
+    <string name="probing">检测能力中…</string>
+    <string name="ip_hint">例：192.168.1.105</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="scan_empty">未发现设备。请确认手机与电视在同一 WiFi 下且电视已开机；也可以直接手动输入电视 IP。</string>
+
+    <string name="remote_title">遥控器</string>
+    <string name="key_power">电源</string>
+    <string name="key_mute">静音</string>
+    <string name="key_menu">菜单</string>
+    <string name="key_home">主页</string>
+    <string name="key_back">返回</string>
+    <string name="key_vol_up">音量+</string>
+    <string name="key_vol_down">音量−</string>
+    <string name="key_ok">OK</string>
+    <string name="send_text">发送文字到电视</string>
+    <string name="text_dialog_title">输入要发送的文字（仅支持英文数字）</string>
+    <string name="add_app">＋ 添加常用应用包名</string>
+    <string name="need_connection_tip">提示：若按键无效，请在电视 设置→账号与安全 中打开「ADB调试」，并在电视上确认弹出的授权框。</string>
+
+    <string name="apps_title">应用管理</string>
+    <string name="apps_search_hint">搜索应用包名</string>
+    <string name="btn_enable_all_sel">启用勾选</string>
+    <string name="btn_disable_all_sel">禁用勾选</string>
+    <string name="kids_mode">儿童锁模式（只保留勾选应用）</string>
+    <string name="apply_kids">一键套用儿童锁</string>
+    <string name="restore_all">全部恢复启用</string>
+    <string name="enabled">启用中</string>
+    <string name="disabled">已禁用</string>
+    <string name="guarded">系统关键组件(受保护)</string>
+    <string name="loading_apps">正在通过 ADB 读取应用列表…</string>
+    <string name="adb_required_tip">本页面需要电视开启 ADB 调试：设置 → 账号与安全 → ADB调试 允许。首次连接时，请用遥控器在电视上确认「允许 USB 调试」弹窗。</string>
+    <string name="refresh_list">刷新列表</string>
+    <string name="system_apps_toggle">同时显示系统应用</string>
+
+    <string name="cast_title">远程看屏</string>
+    <string name="cast_start">开始预览</string>
+    <string name="cast_stop">停止预览</string>
+    <string name="cast_snapshot">保存截图</string>
+    <string name="cast_fps_1">慢速 (约1帧/秒)</string>
+    <string name="cast_fps_2">标准 (约2帧/秒)</string>
+    <string name="cast_fps_4">流畅 (约4帧/秒)</string>
+    <string name="cast_waiting">点击「开始预览」查看电视当前画面。\n画面为逐帧截图刷新，非实时视频流。</string>
+    <string name="cast_saved">截图已保存</string>
+
+    <string name="dialog_select_tv">选择这台电视？</string>
+    <string name="toast_key_sent">已发送</string>
+    <string name="toast_send_failed">发送失败：%1$s</string>
+    <string name="toast_device_saved">已选择：%1$s</string>
+
+    <!-- v1.2 新增 -->
+    <string name="hero_sub">局域网遥控 · 儿童锁 · 远程看屏</string>
+    <string name="device_pill_idle">未连接电视</string>
+    <string name="tile_remote_title">遥控器</string>
+    <string name="tile_apps_title">应用管理</string>
+    <string name="tile_cast_title">远程看屏</string>
+    <string name="tile_tools_title">运维工具</string>
+    <string name="tool_clear_cache">清理缓存</string>
+    <string name="tool_install_apk">安装APK</string>
+    <string name="tool_tv_info">电视信息</string>
+    <string name="tool_reboot">重启电视</string>
+    <string name="reboot_confirm_title">重启电视？</string>
+    <string name="reboot_confirm_msg">将立即重启当前电视，确认执行？</string>
+    <string name="install_pick_title">选择要安装的 APK 文件</string>
+    <string name="install_running">正在安装到电视…（%1$d%%）</string>
+    <string name="install_success">安装成功 ✔</string>
+    <string name="touchpad_hint">滑动移动焦点 · 单击确定 · 双击返回</string>
+    <string name="source_hdmi1">HDMI1</string>
+    <string name="source_hdmi2">HDMI2</string>
+    <string name="source_tv">电视直播</string>
+    <string name="volume_preset_zero">静音</string>
+    <string name="tools_need_adb">需要先在电视上打开 ADB 调试并授权本应用。</string>
+    <string name="install_failed">安装失败：%1$s</string>
+    <string name="cache_cleared">缓存清理完成 ✔</string>
+    <string name="reboot_sent">已发送重启指令</string>
+</resources>

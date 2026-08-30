@@ -1,0 +1,4 @@
+## 本地 SDK 路径示例文件。
+## 用 Android Studio 打开工程时会自动生成 local.properties。
+## 如手动构建，请把 sdk.dir 改为你机器上的 Android SDK 目录，并将本文件改名为 local.properties。
+sdk.dir=C:\\Users\\你的用户名\\AppData\\Local\\Android\\Sdk
