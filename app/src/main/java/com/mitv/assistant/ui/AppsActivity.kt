@@ -181,17 +181,22 @@ class AppsActivity : AppCompatActivity() {
     private fun toggleApp(row: AppRow) {
         if (row.guarded && row.enabled) {
             MaterialAlertDialogBuilder(this)
-                .setTitle("受保护的组件")
-                .setMessage("${row.pkg}\n\n这是疑似电视桌面/关键组件，禁用后可能需要恢复出厂才能修复。确定要继续吗？")
+                .setTitle("关键系统组件，禁止禁用")
+                .setMessage("${row.pkg}\n\n为避免电视无法启动、无法显示桌面或无法操作，此版本不允许禁用该组件。")
+                .setPositiveButton(R.string.confirm, null)
+                .show()
+        } else if (row.enabled) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("确认禁用")
+                .setMessage("即将禁用：${row.alias ?: row.pkg}\n包名：${row.pkg}\n\n禁用后该应用将无法启动。可以在本工具中恢复。")
                 .setPositiveButton(R.string.confirm) { _, _ -> execute(listOf(opDisable(row.pkg))) }
                 .setNegativeButton(R.string.cancel, null)
                 .show()
-        } else if (row.enabled) {
-            execute(listOf(opDisable(row.pkg)))
         } else {
             execute(listOf(opEnable(row.pkg)))
         }
     }
+
 
     private fun applyKidsLock() {
         val checkedSet = visibleRows.filter { it.checked }.map { it.pkg }.toMutableSet()
@@ -456,6 +461,20 @@ class AppsActivity : AppCompatActivity() {
     companion object {
         /** 完全隐藏的系统关键包 */
         private val HIDDEN_GUARDS = setOf("android", "com.android.systemui", "com.android.providers.settings")
+
+        /** 永不允许禁用的关键 Android / TV 组件 */
+        private val NEVER_DISABLE_PACKAGES = setOf(
+            "android",
+            "com.android.systemui",
+            "com.android.settings",
+            "com.android.providers.settings",
+            "com.android.packageinstaller",
+            "com.google.android.packageinstaller",
+            "com.android.permissioncontroller",
+            "com.android.inputmethod.latin",
+            "com.google.android.inputmethod.latin",
+        )
+
 
         /** 需二次确认的疑似桌面/启动器模式 */
         private val HOME_PATTERNS = listOf(
