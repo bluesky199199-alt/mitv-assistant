@@ -163,7 +163,7 @@ class AppsActivity : AppCompatActivity() {
 
     /** 电视桌面/系统UI这类组件一旦禁用可能导致无法操作电视 */
     private fun isGuardedHome(pkg: String): Boolean =
-        HOME_PATTERNS.any { it.containsMatchIn(pkg) }
+        pkg in NEVER_DISABLE_PACKAGES || HOME_PATTERNS.any { it.containsMatchIn(pkg) }
 
     private fun refreshVisible() {
         val query = (findViewById<View>(R.id.searchBox) as TextView).text.toString().trim().lowercase()
@@ -217,14 +217,15 @@ class AppsActivity : AppCompatActivity() {
     }
 
     private fun restoreAll() {
-        val toEnable = allRows.filter { !it.enabled && !it.guarded }
+        val managed = App.get().prefs.managedDisabledPackages
+        val toEnable = allRows.filter { !it.enabled && !it.guarded && it.pkg in managed }
         if (toEnable.isEmpty()) {
-            Toast.makeText(this, "当前列表中没有已禁用的应用", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "没有由本工具禁用且仍处于禁用状态的应用", Toast.LENGTH_SHORT).show()
             return
         }
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.restore_all)
-            .setMessage("将重新启用 ${toEnable.size} 个应用。确认？")
+            .setMessage("仅重新启用本工具此前禁用的 ${toEnable.size} 个应用，不会更改其他原有禁用状态。确认？")
             .setPositiveButton(R.string.confirm) { _, _ ->
                 execute(toEnable.map { opEnable(it.pkg) })
             }
@@ -269,7 +270,15 @@ class AppsActivity : AppCompatActivity() {
                             when {
                                 out.contains("Error", true) || out.contains("Exception", true) ->
                                     failures += "${op.desc}: ${out.lineSequence().firstOrNull { it.isNotBlank() } ?: "失败"}"
-                                else -> okCount++
+                                else -> {
+                                    okCount++
+                                    val prefs = App.get().prefs
+                                    val managed = prefs.managedDisabledPackages
+                                    if (op.enable) managed.remove(op.desc.removePrefix("启用 "))
+                                    else managed.add(op.desc.removePrefix("禁用 "))
+                                    prefs.managedDisabledPackages = managed
+                                    prefs.logOperation(op.desc)
+                                }
                             }
                         } catch (e: Exception) {
                             failures += "${op.desc}: ${e.message}"
