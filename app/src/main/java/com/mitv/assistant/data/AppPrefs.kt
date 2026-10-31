@@ -31,6 +31,22 @@ class AppPrefs private constructor(context: Context) {
         get() = LinkedHashSet(sp.getString(KEY_WHITELIST, "")!!.split('\n').filter { it.isNotBlank() })
         set(value) = sp.edit().putString(KEY_WHITELIST, value.joinToString("\n")).apply()
 
+    /** 本工具实际执行禁用的包；恢复操作只针对该集合。 */
+    var managedDisabledPackages: MutableSet<String>
+        get() = LinkedHashSet(sp.getString(KEY_MANAGED_DISABLED, "")!!.split('\\n').filter { it.isNotBlank() })
+        set(value) = sp.edit().putString(KEY_MANAGED_DISABLED, value.joinToString("\\n")).apply()
+
+    /** 最近操作记录（本地保存，最多保留 100 条）。 */
+    var operationLog: MutableList<String>
+        get() = sp.getString(KEY_OPERATION_LOG, "")!!.split('\\n').filter { it.isNotBlank() }.toMutableList()
+        set(value) = sp.edit().putString(KEY_OPERATION_LOG, value.takeLast(100).joinToString("\\n")).apply()
+
+    fun logOperation(message: String) {
+        val entries = operationLog
+        entries.add("${System.currentTimeMillis()}|$message")
+        operationLog = entries
+    }
+
     /** 包名 -> 备注名 */
     fun aliasFor(pkg: String): String? =
         sp.getString(KEY_ALIASES, "")!!.split('\n')
@@ -56,6 +72,8 @@ class AppPrefs private constructor(context: Context) {
         private const val KEY_LAST_CHANNEL = "last_channel"
         private const val KEY_FAVORITES = "favorites"
         private const val KEY_WHITELIST = "whitelist"
+        private const val KEY_MANAGED_DISABLED = "managed_disabled_packages"
+        private const val KEY_OPERATION_LOG = "operation_log"
         private const val KEY_ALIASES = "aliases"
         private const val KEY_ADB_PRIV = "adb_priv_pkcs8_b64"
         private const val KEY_ADB_PUB = "adb_pub_x509_b64"
