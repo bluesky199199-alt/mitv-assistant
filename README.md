@@ -132,3 +132,8 @@ app/src/main/java/com/mitv/assistant/
 - AOSP adb protocol 文档
 
 License: MIT
+
+
+## 自动构建
+
+推送 `rewrite/**`、`feature/**` 或 `main` 分支后，GitHub Actions 会执行 `gradle assembleDebug` 并上传 Debug APK 构建产物。工作流文件位于 `.github/workflows/android.yml`。
