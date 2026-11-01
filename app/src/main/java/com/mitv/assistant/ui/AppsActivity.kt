@@ -119,7 +119,7 @@ class AppsActivity : AppCompatActivity() {
                 TvAdb.ensureAuthorized(applicationContext, ip, hint = { msg ->
                     runOnUiThread { statusText.text = msg }
                 })
-                val client = TvAdb.acquire(applicationContext, ip)
+                val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, ip) }
                 val rows = withContext(Dispatchers.IO) { fetchRows(client) }
                 allRows.clear()
                 allRows.addAll(rows)
@@ -258,7 +258,7 @@ class AppsActivity : AppCompatActivity() {
             var okCount = 0
             val failures = mutableListOf<String>()
             try {
-                val client = TvAdb.acquire(applicationContext, ip)
+                val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, ip) }
                 withContext(Dispatchers.IO) {
                     ops.forEachIndexed { index, op ->
                         runOnUiThread {
@@ -311,7 +311,7 @@ class AppsActivity : AppCompatActivity() {
     }
 
     private fun toolTvInfo() = gate {
-        val client = TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!)
+        val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!) }
         val info = withContext(Dispatchers.IO) { TvOps.fetchInfo(client) }
         MaterialAlertDialogBuilder(this)
             .setTitle("电视信息")
@@ -321,7 +321,7 @@ class AppsActivity : AppCompatActivity() {
     }
 
     private fun toolClearCache() = gate {
-        val client = TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!)
+        val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!) }
         withContext(Dispatchers.IO) { TvOps.clearCaches(client) }
         statusText.text = getString(R.string.cache_cleared)
     }
@@ -332,7 +332,7 @@ class AppsActivity : AppCompatActivity() {
             .setMessage(getString(R.string.reboot_confirm_msg))
             .setPositiveButton(R.string.confirm) { _, _ ->
                 gate {
-                    val client = TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!)
+                    val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!) }
                     withContext(Dispatchers.IO) { TvOps.reboot(client) }
                     TvAdb.reset()
                     statusText.text = getString(R.string.reboot_sent)
@@ -358,7 +358,7 @@ class AppsActivity : AppCompatActivity() {
             .show()
 
         try {
-            val client = TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!)
+            val client = withContext(Dispatchers.IO) { TvAdb.acquire(applicationContext, App.get().prefs.tvIp!!) }
             withContext(Dispatchers.IO) {
                 TvOps.installApk(client, bytes) { p ->
                     runOnUiThread { percentText.text = getString(R.string.install_running, p.coerceIn(0, 100)) }
