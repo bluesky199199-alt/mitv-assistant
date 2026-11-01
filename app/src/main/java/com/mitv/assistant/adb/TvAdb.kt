@@ -93,7 +93,9 @@ object TvAdb {
         while (System.currentTimeMillis() - started < totalWindowMs) {
             attempt++
             try {
-                val remainingMs = (totalWindowMs - (System.currentTimeMillis() - started)).coerceAtLeast(1_000)\n                // 在同一条认证会话中等待用户确认，避免 14 秒后主动断开导致授权弹窗反复消失。\n                val candidate = acquire(context, ip, port, timeoutMs = remainingMs)
+                val remainingMs = (totalWindowMs - (System.currentTimeMillis() - started)).coerceAtLeast(1_000)
+                // 在同一条认证会话中等待用户确认，避免 14 秒后主动断开导致授权弹窗反复消失。
+                val candidate = acquire(context, ip, port, timeoutMs = remainingMs)
                 // 探针：一条最小 shell 命令。未授权会在 acquire/connect 抛出，不会走到这里
                 val echo = withContext(Dispatchers.IO) {
                     String(candidate.exec("echo __auth_ok__"), Charsets.UTF_8)
