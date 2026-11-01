@@ -70,8 +70,11 @@ object AdbCryptoCompat {
     fun signToken(keyPair: KeyPair, token: ByteArray): ByteArray {
         val cipher = Cipher.getInstance("RSA/ECB/NoPadding")
         cipher.init(Cipher.ENCRYPT_MODE, keyPair.private)
+        // ADB AUTH 签名的输入是 SHA-1(token)，不是原始 20 字节 token。
+        // adbd 使用 RSA PKCS#1 v1.5 对 SHA-1 摘要进行签名验证。
+        val digest = java.security.MessageDigest.getInstance("SHA-1").digest(token)
         cipher.update(sha1Pkcs1Prefix())
-        return cipher.doFinal(token)
+        return cipher.doFinal(digest)
     }
 
     /**
