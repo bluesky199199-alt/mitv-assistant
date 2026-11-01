@@ -305,22 +305,16 @@ class AdbClient(
                             lastTokenAtMs = System.currentTimeMillis()
                             this@AdbClient.objectNotifyAll()
                         }
-                        // 双包策略（对齐实测可用的电视管家类应用）：
-                        // 立刻把「签名」和「完整公钥」一起发给 adbd。
-                        // 已登记过的密钥走签名直接放行；陌生密钥则由公钥包在毫秒级触发电视端弹窗，
-                        // 不再依赖部分固件缺失的「签名失败后重发 TOKEN」行为。
-                        send(generate(CMD_AUTH, AUTH_SIGNATURE, 0, AdbCryptoCompat.signToken(keyPair, msg.payload)))
-                        sentSignature = true
-                        // 公钥包首发一次；此后若 adbd 因弹窗未确认而重发 TOKEN，则跟随补发保持弹窗有效
-                        if (!publicKeySent) {
-                            publicKeySent = true
-                            runCatching {
-                                send(generate(CMD_AUTH, AUTH_PUBLICKEY, 0, AdbCryptoCompat.adbPublicKeyPayload(keyPair)))
-                            }
+                        // 严格遵循 ADB AUTH 状态机：
+                        // 第一次 TOKEN 只回签名；如果设备仍不接受该签名，adbd 会再次发送 TOKEN，
+                        // 此时才发送完整公钥。提前把 SIGNATURE 与 PUBLICKEY 连续塞给部分电视 adbd，
+                        // 可能导致它丢弃第二帧，结果就是电视始终不弹出 RSA 授权窗口。
+                        if (!sentSignature) {
+                            send(generate(CMD_AUTH, AUTH_SIGNATURE, 0, AdbCryptoCompat.signToken(keyPair, msg.payload)))
+                            sentSignature = true
                         } else {
-                            runCatching {
-                                send(generate(CMD_AUTH, AUTH_PUBLICKEY, 0, AdbCryptoCompat.adbPublicKeyPayload(keyPair)))
-                            }
+                            publicKeySent = true
+                            send(generate(CMD_AUTH, AUTH_PUBLICKEY, 0, AdbCryptoCompat.adbPublicKeyPayload(keyPair)))
                         }
                     }
 
