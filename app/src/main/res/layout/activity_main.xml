@@ -94,6 +94,22 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- ADB 初始化入口 -->
+        <TextView
+            android:id="@+id/tileAdbBootstrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_panel"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            android:text="🔌 USB 检测 / 无线 ADB 连接助手    ›"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <!-- 功能磁贴 2x2 -->
         <LinearLayout
             android:layout_width="match_parent"
