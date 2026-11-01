@@ -29,6 +29,10 @@
         </activity>
 
         <activity
+            android:name=".ui.AdbBootstrapActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.RemoteActivity"
             android:exported="false" />
 
