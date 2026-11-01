@@ -117,7 +117,7 @@ class AdbBootstrapActivity : AppCompatActivity() {
     private fun targetIp(): String? {
         val ip = ipInput.text.toString().trim()
         val valid = Regex("""^(\d{1,3}\.){3}\d{1,3}$""").matches(ip) &&
-            ip.split(".").all { it.toIntOrNull() in 0..255 }
+            ip.split(".").all { (it.toIntOrNull() ?: -1) in 0..255 }
         if (!valid) {
             status.text = "请输入有效的电视 IPv4 地址。"
             return null
@@ -151,6 +151,8 @@ class AdbBootstrapActivity : AppCompatActivity() {
         setBusy(true, "正在连接电视；如果电视弹出授权框，请用遥控器勾选「一律允许」并确认。")
         lifecycleScope.launch {
             try {
+                val portOpen = withContext(Dispatchers.IO) { TvAdb.probePort(ip) }
+                if (!portOpen) throw IOException("TCP 5555 未开放。请先在电视端打开 ADB / 网络调试。")
                 val client = TvAdb.ensureAuthorized(
                     applicationContext, ip, totalWindowMs = 90_000,
                     hint = { message -> runOnUiThread { status.text = message } },
