@@ -38,7 +38,10 @@ android {
 }
 
 dependencies {
-    // 成熟的 ADB 协议实现：接管 AUTH/RSA、帧校验及流状态机\n    implementation 'com.tananaev:adblib:1.3'\n\n    implementation 'androidx.core:core-ktx:1.12.0'
+    // 成熟的 ADB 协议实现：接管 AUTH/RSA、帧校验及流状态机
+    implementation 'com.tananaev:adblib:1.3'
+
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
