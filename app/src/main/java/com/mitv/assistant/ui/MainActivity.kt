@@ -50,6 +50,9 @@ class MainActivity : AppCompatActivity() {
             requireTv { startActivity(Intent(this, AppsActivity::class.java).putExtra("focus_tools", true)) }
         }
         findViewById<android.view.View>(R.id.helpText).setOnClickListener { showHelp() }
+        findViewById<android.view.View>(R.id.tileAdbBootstrap).setOnClickListener {
+            startActivity(Intent(this, AdbBootstrapActivity::class.java))
+        }
 
         renderSaved()
     }
